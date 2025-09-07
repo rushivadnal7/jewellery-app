@@ -1,5 +1,5 @@
-import { colors } from '@/colors';
 import Hero from '@/modules/components/Hero';
+import { colors } from '@/modules/constants/colors';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 

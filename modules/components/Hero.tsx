@@ -1,12 +1,12 @@
-import React, { useRef, useEffect, useState, useCallback } from "react";
-import { View, StyleSheet, Text } from "react-native";
-import { GLView } from "expo-gl";
-import { Asset } from "expo-asset";
-import { Renderer, loadAsync } from "expo-three";
-import * as THREE from "three";
-import { LinearGradient } from 'expo-linear-gradient';
-import { colors } from "@/colors";
+import { colors } from "@/modules/constants/colors";
 import { useFocusEffect } from '@react-navigation/native';
+import { Asset } from "expo-asset";
+import { GLView } from "expo-gl";
+import { LinearGradient } from 'expo-linear-gradient';
+import { Renderer, loadAsync } from "expo-three";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import * as THREE from "three";
 
 const Hero = React.memo(() => {
     const modelRef = useRef(null);

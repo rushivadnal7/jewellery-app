@@ -1,15 +1,14 @@
-import { View, Text, StyleSheet } from "react-native";
-import Animated, { 
-
-    useSharedValue, 
-    useAnimatedStyle, 
-    withRepeat, 
-    withTiming,
+import { colors } from "@/modules/constants/colors";
+import { useEffect } from "react";
+import { StyleSheet, View } from "react-native";
+import Animated, {
     Easing,
     FadeIn,
+    useAnimatedStyle,
+    useSharedValue,
+    withRepeat,
+    withTiming,
 } from "react-native-reanimated";
-import { useEffect } from "react";
-import { colors } from "@/colors";
 
 type LoadingSpinnerProps = {
     size?: 'small' | 'medium' | 'large';

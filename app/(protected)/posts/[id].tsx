@@ -1,14 +1,14 @@
-import { Stack, useLocalSearchParams, router } from "expo-router";
-import { View, StyleSheet, ScrollView, TouchableOpacity, Text } from "react-native";
-import { useAppDispatch, useAppSelector } from "@/modules/post/hooks/useRedux";
-import { useEffect, useState } from "react";
-import { fetchPosts } from "@/modules/post/services/PostSlice";
-import { PostHeader } from "@/modules/post/components/PostHeader";
-import { Loader } from "@/modules/components/Loader";
 import { ErrorMessage } from "@/modules/components/ErrorMessage";
+import { Loader } from "@/modules/components/Loader";
+import { colors } from "@/modules/constants/colors";
 import { PostContent } from "@/modules/post/components/PostContent";
-import { colors } from "@/colors";
+import { PostHeader } from "@/modules/post/components/PostHeader";
+import { useAppDispatch, useAppSelector } from "@/modules/post/hooks/useRedux";
+import { fetchPosts } from "@/modules/post/services/PostSlice";
 import { MaterialIcons } from "@expo/vector-icons";
+import { Stack, useLocalSearchParams } from "expo-router";
+import { useEffect, useState } from "react";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function PostDetails() {
     const { id } = useLocalSearchParams();

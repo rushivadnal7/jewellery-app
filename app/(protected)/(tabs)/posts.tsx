@@ -1,12 +1,12 @@
+import { Loader } from "@/modules/components/Loader";
+import { colors } from "@/modules/constants/colors";
 import { useAppDispatch, useAppSelector } from "@/modules/post/hooks/useRedux";
 import { fetchPosts } from "@/modules/post/services/PostSlice";
-import React, { useEffect, useRef, useState } from "react";
-import { View, StyleSheet, Text, FlatList, Image, TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
-import { colors } from "@/colors";
 import { router } from "expo-router";
-import { Loader } from "@/modules/components/Loader";
+import React, { useEffect, useRef, useState } from "react";
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 
 export default function Posts() {

@@ -1,7 +1,7 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { colors } from "@/modules/constants/colors";
 import { Ionicons } from "@expo/vector-icons";
-import Animated, { FadeIn, BounceIn, SlideInDown } from "react-native-reanimated";
-import { colors } from "@/colors";
+import { Pressable, StyleSheet, Text } from "react-native";
+import Animated, { BounceIn, FadeIn, SlideInDown } from "react-native-reanimated";
 
 type ErrorMessageProps = {
     title?: string;

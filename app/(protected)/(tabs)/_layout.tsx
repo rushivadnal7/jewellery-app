@@ -1,9 +1,8 @@
-import { StyleSheet, Text, View, } from 'react-native'
-import React from 'react'
-import { Tabs } from 'expo-router'
-import { MaterialIcons } from '@expo/vector-icons'
-import { colors } from '@/colors';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { colors } from '@/modules/constants/colors';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Tabs } from 'expo-router';
+import React from 'react';
+import { StyleSheet, Text, View, } from 'react-native';
 
 const TabIcon = ({ title, focused, icon }: { title: string; focused: boolean; icon: string }) => {
   return (

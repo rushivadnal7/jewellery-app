@@ -1,6 +1,6 @@
-import { colors } from '@/colors';
+import { colors } from '@/modules/constants/colors';
 import React, { useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, Animated, Easing, Image } from 'react-native';
+import { Animated, Easing, Image, StyleSheet, View } from 'react-native';
 
 interface SplashScreenProps {
   onAnimationComplete?: () => void;

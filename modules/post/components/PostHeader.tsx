@@ -1,8 +1,8 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { colors } from "@/modules/constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { colors } from "@/colors";
 
 
 export const PostHeader = () => {

@@ -1,13 +1,13 @@
-import { View, Text, StyleSheet } from "react-native";
-import Animated, { 
-    FadeInDown, 
+import { colors } from "@/modules/constants/colors";
+import { useEffect } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import Animated, {
+    FadeInDown,
     FadeInUp,
-    useSharedValue,
     useAnimatedStyle,
+    useSharedValue,
     withSpring,
 } from "react-native-reanimated";
-import { useEffect } from "react";
-import { colors } from "@/colors";
 
 
 type Post = {

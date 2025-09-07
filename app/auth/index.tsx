@@ -1,28 +1,28 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Animated,
-  Dimensions,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  TouchableOpacity,
-  Alert,
-  SafeAreaView,
-  Platform,
-  ScrollView,
-  Keyboard,
-  Pressable
-} from "react-native";
 import { useAuth } from "@/modules/auth/context/AuthProvider";
-import { colors } from "@/colors";
-import { z } from "zod";
-import { Controller, useForm } from "react-hook-form";
+import { loginSchema } from "@/modules/auth/validations/loginSchema";
+import { colors } from "@/modules/constants/colors";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigation } from '@react-navigation/native';
 import { router } from "expo-router";
-import { loginSchema } from "@/modules/auth/validations/loginSchema";
+import React, { useEffect, useRef, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import {
+  Alert,
+  Animated,
+  Dimensions,
+  ImageBackground,
+  Keyboard,
+  Platform,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
+} from "react-native";
+import { z } from "zod";
 const { height } = Dimensions.get("window");
 
 
