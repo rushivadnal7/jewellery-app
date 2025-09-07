@@ -1,29 +1,41 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import React, { useEffect } from "react";
+import { Text } from "react-native";
+import { AuthProvider } from "../modules/auth/context/AuthProvider";
+// Redux
+import { Provider } from "react-redux";
+import { store } from "@/modules/store/store";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Loader } from "@/modules/components/Loader";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+  const [fontsLoaded] = useFonts({
+    DefaultFont: require("../assets/fonts/Jost-VariableFont_wght.ttf"),
+    TitleFont: require("../assets/fonts/Yellowtail-Regular.ttf"),
   });
 
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
+  useEffect(() => {
+    if (fontsLoaded) {
+      const oldRender = (Text as any).render;
+      (Text as any).render = function (...args: any[]) {
+        const origin = oldRender.call(this, ...args);
+        return React.cloneElement(origin, {
+          style: [{ fontFamily: "DefaultFont" }, origin.props.style],
+        });
+      };
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) return <Loader />;
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <Provider store={store}>
+        <AuthProvider>
+          <Stack screenOptions={{ headerShown: false }} />
+        </AuthProvider>
+      </Provider>
+    </SafeAreaProvider>
   );
 }
