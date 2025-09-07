@@ -37,7 +37,6 @@ export const PostContent = ({ post }: PostContentProps) => {
 
     return (
         <Animated.View style={[styles.container, animatedStyle]}>
-            {/* Post ID Badge */}
             <Animated.View 
                 entering={FadeInUp.delay(100).springify()}
                 style={styles.badge}
@@ -45,7 +44,6 @@ export const PostContent = ({ post }: PostContentProps) => {
                 <Text style={styles.badgeText}>Post #{post.id}</Text>
             </Animated.View>
 
-            {/* Title Section */}
             <Animated.View 
                 entering={FadeInDown.delay(200).springify()}
                 style={styles.titleContainer}
@@ -53,7 +51,6 @@ export const PostContent = ({ post }: PostContentProps) => {
                 <Text style={styles.title}>{post.title}</Text>
             </Animated.View>
 
-            {/* Content Section */}
             <Animated.View 
                 entering={FadeInDown.delay(300).springify()}
                 style={styles.contentContainer}
@@ -62,7 +59,6 @@ export const PostContent = ({ post }: PostContentProps) => {
                 <Text style={styles.body}>{post.body}</Text>
             </Animated.View>
 
-            {/* Author Section */}
             <Animated.View 
                 entering={FadeInDown.delay(400).springify()}
                 style={styles.authorContainer}

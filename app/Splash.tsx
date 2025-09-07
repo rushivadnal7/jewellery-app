@@ -11,9 +11,7 @@ export default function SplashScreen({ onAnimationComplete }: SplashScreenProps)
   const scaleAnim = useRef(new Animated.Value(0.5)).current;
 
   useEffect(() => {
-    // Animation sequence
     Animated.sequence([
-      // Entrance animation
       Animated.parallel([
         Animated.timing(fadeAnim, {
           toValue: 1,
@@ -28,9 +26,7 @@ export default function SplashScreen({ onAnimationComplete }: SplashScreenProps)
           useNativeDriver: true,
         }),
       ]),
-      // Pause
       Animated.delay(1500),
-      // Exit animation
       Animated.parallel([
         Animated.timing(fadeAnim, {
           toValue: 0,
@@ -116,7 +112,6 @@ const styles = StyleSheet.create({
     fontSize: 36,
     color: colors.text,
     fontFamily: 'TitleFont',
-    // fontWeight: 'bold',
     letterSpacing: 5,
   },
 });

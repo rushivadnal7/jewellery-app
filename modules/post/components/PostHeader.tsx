@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 22,
-        backgroundColor: colors.primary + '10',
+
+        backgroundColor: colors.primary + '100',
     },
     headerTitle: {
         fontSize: 18,

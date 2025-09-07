@@ -11,7 +11,6 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const { authState } = useAuth();
 
   if (!authState.authenticated) {
-    // redirect to login
     return <Stack.Screen name="/login" />;
   }
 

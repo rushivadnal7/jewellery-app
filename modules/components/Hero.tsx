@@ -5,7 +5,6 @@ import { Asset } from "expo-asset";
 import { Renderer, loadAsync } from "expo-three";
 import * as THREE from "three";
 import { LinearGradient } from 'expo-linear-gradient';
-import { MaterialIcons } from '@expo/vector-icons';
 import { colors } from "@/colors";
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -21,27 +20,22 @@ const Hero = React.memo(() => {
 
     const [isModelLoaded, setIsModelLoaded] = useState(false);
     const [loadingProgress, setLoadingProgress] = useState(0);
-    const [key, setKey] = useState(0); // Force re-render of GLView
+    const [key, setKey] = useState(0); 
 
-    // Reset state when tab becomes focused
     useFocusEffect(
         useCallback(() => {
-            // When tab becomes active, reset if we were previously initialized
             if (isInitializedRef.current) {
                 console.log('🔄 Tab refocused, resetting 3D model...');
                 
-                // Reset all state
                 isInitializedRef.current = false;
                 isLoadingRef.current = false;
                 setIsModelLoaded(false);
                 setLoadingProgress(0);
                 
-                // Force GLView to recreate by changing key
                 setKey(prev => prev + 1);
             }
             
             return () => {
-                // Cleanup when tab loses focus
                 if (requestRef.current) {
                     cancelAnimationFrame(requestRef.current);
                     requestRef.current = null;
@@ -63,23 +57,20 @@ const Hero = React.memo(() => {
         const { drawingBufferWidth: width, drawingBufferHeight: height } = gl;
 
         try {
-            // Renderer setup
             const renderer = new Renderer({ gl });
             renderer.setSize(width, height);
-            renderer.setClearColor(0x000000, 0); // Transparent background to show gradient
+            renderer.setClearColor(0x000000, 0); 
             rendererRef.current = renderer;
 
-            // Scene
+            
             const scene = new THREE.Scene();
             sceneRef.current = scene;
 
-            // Camera - positioned to center the model
             const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
             camera.position.set(0, 0, 5);
             camera.lookAt(0, 0, 0);
             cameraRef.current = camera;
 
-            // Lighting setup for better visibility
             const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
             scene.add(ambientLight);
 
@@ -102,7 +93,6 @@ const Hero = React.memo(() => {
                 await asset.downloadAsync();
                 setLoadingProgress(70);
 
-                // Suppress texture loading warnings
                 const originalError = console.error;
                 console.error = (...args) => {
                     if (args[0]?.includes?.("THREE.GLTFLoader: Couldn't load texture")) return;
@@ -118,17 +108,14 @@ const Hero = React.memo(() => {
                 if (model) {
                     modelRef.current = model;
 
-                    // Center the model properly
                     const box = new THREE.Box3().setFromObject(model);
                     const center = box.getCenter(new THREE.Vector3());
                     const size = box.getSize(new THREE.Vector3());
 
-                    // Scale to fit nicely in view (adjust this value as needed)
                     const maxDimension = Math.max(size.x, size.y, size.z);
-                    const scale = 2.0 / maxDimension; // Adjust 2.0 to make model bigger/smaller
+                    const scale = 2.0 / maxDimension; 
                     model.scale.setScalar(scale);
 
-                    // Center the model at origin (0, 0, 0)
                     model.position.copy(center).multiplyScalar(-scale);
 
                     scene.add(model);
@@ -147,17 +134,15 @@ const Hero = React.memo(() => {
                 isLoadingRef.current = false;
             }
 
-            // Simple rotation animation
             let time = 0;
             const render = () => {
                 if (!isInitializedRef.current || !glContextRef.current) return;
 
                 requestRef.current = requestAnimationFrame(render);
-                time += 0.008; // Slower rotation
+                time += 0.008; 
 
                 if (modelRef.current) {
                     modelRef.current.rotation.y = time;
-                    // Subtle floating effect
                     modelRef.current.position.y += Math.sin(time * 2) * 0.001;
                 }
 
@@ -202,7 +187,6 @@ const Hero = React.memo(() => {
                 rendererRef.current.dispose();
             }
 
-            // Reset all refs
             isInitializedRef.current = false;
             isLoadingRef.current = false;
             modelRef.current = null;
@@ -215,7 +199,6 @@ const Hero = React.memo(() => {
 
     return (
         <View style={styles.container}>
-            {/* Gradient Background with Green Patches */}
             <LinearGradient
                 colors={['#000000', '#001a0d', '#000000']}
                 style={styles.gradientBackground}
@@ -223,14 +206,12 @@ const Hero = React.memo(() => {
                 end={{ x: 1, y: 1 }}
             />
             
-            {/* Green Patches */}
-            <View style={[styles.greenPatch, styles.centerPatch]} />
+            {/* <View style={[styles.greenPatch, styles.centerPatch]} />
             <View style={[styles.greenPatch, styles.topLeftPatch]} />
             <View style={[styles.greenPatch, styles.bottomRightPatch]} />
             <View style={[styles.greenPatch, styles.topRightPatch]} />
-            <View style={[styles.greenPatch, styles.bottomLeftPatch]} />
+            <View style={[styles.greenPatch, styles.bottomLeftPatch]} /> */}
 
-            {/* Loading Screen */}
             {!isModelLoaded && (
                 <View style={styles.loadingOverlay}>
                     <Text style={styles.logoText}>BINNY'S</Text>
@@ -244,22 +225,19 @@ const Hero = React.memo(() => {
                 </View>
             )}
 
-            {/* Top Text - Always visible */}
             <View style={styles.topText}>
                 <Text style={styles.brandTitle}>BINNY'S</Text>
                 <Text style={styles.subtitle}>Premium Jewelry Collection</Text>
             </View>
 
-            {/* 3D Model View */}
             <View style={styles.modelContainer}>
                 <GLView
-                    key={key} // Force recreation when key changes
+                    key={key} 
                     style={styles.glView}
                     onContextCreate={onContextCreate}
                 />
             </View>
 
-            {/* Bottom Text - Always visible */}
             <View style={styles.bottomText}>
                 <Text style={styles.description}>Cuban Palm Chain</Text>
                 <Text style={styles.tagline}>Crafted to Perfection</Text>
@@ -277,13 +255,11 @@ const styles = StyleSheet.create({
         position: 'relative',
     },
 
-    // Gradient Background
     gradientBackground: {
         ...StyleSheet.absoluteFillObject,
         zIndex: 0,
     },
 
-    // Green Patches
     greenPatch: {
         position: 'absolute',
         backgroundColor: colors.primary,
@@ -328,7 +304,6 @@ const styles = StyleSheet.create({
         zIndex: 1,
     },
 
-    // Loading overlay
     loadingOverlay: {
         ...StyleSheet.absoluteFillObject,
         backgroundColor: 'rgba(0, 0, 0, 0.9)',
@@ -361,7 +336,6 @@ const styles = StyleSheet.create({
         letterSpacing: 1,
     },
 
-    // Top text section
     topText: {
         position: 'absolute',
         top: 120,
@@ -387,11 +361,10 @@ const styles = StyleSheet.create({
         fontWeight: '300',
     },
 
-    // 3D Model container
     modelContainer: {
         flex: 1,
-        marginTop: 80, // Space for top text
-        marginBottom: 80, // Space for bottom text
+        marginTop: 80, 
+        marginBottom: 80, 
         position: 'relative',
         height: 300,
         zIndex: 3,

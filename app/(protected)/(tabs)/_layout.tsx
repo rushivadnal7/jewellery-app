@@ -91,11 +91,9 @@ export default _layout
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    // backgroundColor: '#fff'
   },
   focustabContainer: {
     flexDirection: 'row',
-    // backgroundColor: colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%',

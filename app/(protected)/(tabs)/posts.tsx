@@ -25,7 +25,7 @@ export default function Posts() {
 
   const handleScroll = (event: any) => {
     const offsetY = event.nativeEvent.contentOffset.y;
-    if (offsetY > 5 * 150) { // ~150px per card × 5
+    if (offsetY > 5 * 150) { 
       setShowScrollTop(true);
     } else {
       setShowScrollTop(false);
@@ -35,14 +35,12 @@ export default function Posts() {
 
 
 
-  // Generate random image URL from Unsplash
   const getRandomImageUrl = (id: string | number) => {
     const categories = ['jewelry', 'fashion', 'luxury', 'lifestyle'];
     const category = categories[id % categories.length];
     return `https://picsum.photos/seed/${encodeURIComponent(category + '-' + id)}/400/300`;
   };
 
-  // Extract first few words as title
   const getPostTitle = (title: string) => {
     const words = title.split(' ');
     return words.slice(0, 3).map(word =>
@@ -50,7 +48,6 @@ export default function Posts() {
     ).join(' ');
   };
 
-  // Create short description
   const getPostDescription = (body: string) => {
     const words = body.split(' ');
     return words.slice(0, 8).map(word =>
@@ -88,7 +85,6 @@ export default function Posts() {
             activeOpacity={0.8}
           >
             <View style={styles.cardContent}>
-              {/* Image Section */}
               <View style={styles.imageContainer}>
                 <Image
                   source={{ uri: getRandomImageUrl(item.id) }}
@@ -102,12 +98,10 @@ export default function Posts() {
                 </View>
               </View>
 
-              {/* Content Section */}
               <View style={styles.contentSection}>
                 <Text style={styles.postTitle}>{getPostTitle(item.title)}</Text>
                 <Text style={styles.postDescription}>{getPostDescription(item.body)}</Text>
 
-                {/* Bottom Info */}
                 <View style={styles.bottomInfo}>
                   <View style={styles.authorInfo}>
                     <View style={styles.authorAvatar}>
@@ -144,7 +138,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 16,
-    backgroundColor: colors.background, // black
+    backgroundColor: colors.background, 
   },
   scrollTopBtn: {
     position: "absolute",
@@ -168,14 +162,14 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 28,
     fontWeight: "bold",
-    color: colors.text,  // white text
+    color: colors.text,  
     marginBottom: 20,
     marginTop: 10,
   },
   footer: {
     fontSize: 14,
     fontWeight: "400",
-    color: colors.text,  // white text
+    color: colors.text,  
     marginBottom: 20,
     marginHorizontal: 'auto',
     marginTop: 10,
@@ -196,7 +190,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderRadius: 16,
     overflow: "hidden",
-    backgroundColor: "#111111", // dark card bg
+    backgroundColor: "#111111", 
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
@@ -221,7 +215,7 @@ const styles = StyleSheet.create({
     right: 12,
   },
   categoryBadge: {
-    backgroundColor: colors.primary, // 👈 use your primary green
+    backgroundColor: colors.primary, 
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 12,
@@ -237,13 +231,13 @@ const styles = StyleSheet.create({
   postTitle: {
     fontSize: 18,
     fontWeight: "600",
-    color: colors.text, // white
+    color: colors.text, 
     marginBottom: 8,
     lineHeight: 24,
   },
   postDescription: {
     fontSize: 14,
-    color: colors.muted, // grey text
+    color: colors.muted, 
     lineHeight: 20,
     marginBottom: 16,
   },
@@ -260,7 +254,7 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: colors.primary, // 👈 green avatar
+    backgroundColor: colors.primary, 
     justifyContent: "center",
     alignItems: "center",
     marginRight: 8,
@@ -280,11 +274,11 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: colors.primary, // 👈 green border
+    borderColor: colors.primary, 
   },
   readMoreText: {
     fontSize: 12,
     fontWeight: "500",
-    color: colors.primary, // 👈 green text
+    color: colors.primary, 
   },
 });

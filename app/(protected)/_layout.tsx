@@ -4,10 +4,6 @@ import { Stack, Redirect, Href } from "expo-router";
 export default function ProtectedLayout() {
   const { authState } = useAuth();
 
-//   if (authState.authenticated === null) {
-//     return <; 
-//   }
-
   if (!authState.authenticated) {
     return <Redirect href={"/auth" as Href}  />;
   }

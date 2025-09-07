@@ -1,4 +1,3 @@
-// components/LogoutButton.tsx
 import React, { useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Animated, Easing } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -12,10 +11,9 @@ const Logout = () => {
   const buttonAnimation = useRef(new Animated.Value(1)).current;
 
   const handlePress = async () => {
-    // Animate button press
     Animated.sequence([
       Animated.timing(animation, {
-        toValue: 0.9, // shrink slightly
+        toValue: 0.9, 
         duration: 100,
         useNativeDriver: true,
         easing: Easing.out(Easing.ease),
@@ -34,7 +32,6 @@ const Logout = () => {
       }),
     ]).start();
 
-    // Additional button pulse animation
     Animated.timing(buttonAnimation, {
       toValue: 0.95,
       duration: 100,
@@ -52,7 +49,6 @@ const Logout = () => {
 
   return (
     <View style={styles.container}>
-      {/* Gradient Background with Green Patches */}
       <LinearGradient
         colors={['#000000', '#001a0d', '#000000']}
         style={styles.gradientBackground}
@@ -60,22 +56,18 @@ const Logout = () => {
         end={{ x: 1, y: 1 }}
       />
       
-      {/* Green Patches */}
       <View style={[styles.greenPatch, styles.centerPatch]} />
       <View style={[styles.greenPatch, styles.topLeftPatch]} />
       <View style={[styles.greenPatch, styles.bottomRightPatch]} />
       <View style={[styles.greenPatch, styles.topRightPatch]} />
       <View style={[styles.greenPatch, styles.bottomLeftPatch]} />
 
-      {/* Content Container */}
       <View style={styles.contentContainer}>
-        {/* Header Section */}
         <View style={styles.headerSection}>
           <Text style={styles.brandTitle}>BINNY'S</Text>
           <Text style={styles.subtitle}>Account Management</Text>
         </View>
 
-        {/* Main Content */}
         <View style={styles.mainContent}>
           <View style={styles.iconContainer}>
             <MaterialIcons name="exit-to-app" size={48} color={colors.primary} />
@@ -86,7 +78,6 @@ const Logout = () => {
             Thank you for visiting BINNY'S Premium Jewelry Collection
           </Text>
 
-          {/* Logout Button */}
           <Animated.View style={{ transform: [{ scale: animation }] }}>
             <Animated.View style={{ transform: [{ scale: buttonAnimation }] }}>
               <TouchableOpacity 
@@ -107,7 +98,6 @@ const Logout = () => {
             </Animated.View>
           </Animated.View>
 
-          {/* Additional Info */}
           <View style={styles.footerSection}>
             <Text style={styles.footerText}>
               You will be safely signed out of your account
@@ -128,13 +118,11 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
 
-  // Gradient Background
   gradientBackground: {
     ...StyleSheet.absoluteFillObject,
     zIndex: 0,
   },
 
-  // Green Patches
   greenPatch: {
     position: 'absolute',
     backgroundColor: colors.primary,
@@ -179,7 +167,6 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
 
-  // Content Container
   contentContainer: {
     flex: 1,
     zIndex: 5,
@@ -188,7 +175,6 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
 
-  // Header Section
   headerSection: {
     alignItems: 'center',
     marginBottom: 60,
@@ -212,7 +198,6 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
 
-  // Main Content
   mainContent: {
     flex: 1,
     alignItems: 'center',

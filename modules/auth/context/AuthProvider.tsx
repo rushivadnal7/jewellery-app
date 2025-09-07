@@ -1,4 +1,3 @@
-// app/context/AuthContext.tsx
 import React, { createContext, useState, useContext, ReactNode, useEffect } from "react";
 import axios from 'axios'
 import * as SecureStore from 'expo-secure-store';
@@ -44,7 +43,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             const payload = {
                 username: username.trim(),
                 password: password,
-                expiresInMins: 30, // optional, can be omitted
+                expiresInMins: 30, 
             };
 
             console.log('payload', payload)
@@ -66,7 +65,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             }
         } catch (error: any) {
             console.error('Login error:', error.response?.data || error.message);
-            throw error; // propagate so form alert works
+            throw error; 
         }
     };
 

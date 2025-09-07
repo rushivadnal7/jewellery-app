@@ -3,7 +3,6 @@ import { Stack } from "expo-router";
 import React, { useEffect } from "react";
 import { Text } from "react-native";
 import { AuthProvider } from "../modules/auth/context/AuthProvider";
-// Redux
 import { Provider } from "react-redux";
 import { store } from "@/modules/store/store";
 import { SafeAreaProvider } from "react-native-safe-area-context";
